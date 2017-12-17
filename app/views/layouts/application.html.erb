@@ -4,11 +4,19 @@
     <title>Pipeline</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="nav-md">
+    <div class="container body">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/gentelella/1.4.0/css/custom.min.css">
+      <div class="main_container">
+        <%= render "layouts/sidenav" %>
+        <%= render "layouts/topnav" %>
+        <%= yield %>
+        <%= render "layouts/footer" %>
+      </div>
+    </div>
   </body>
 </html>
