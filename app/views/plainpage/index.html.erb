@@ -4,24 +4,24 @@
       <div id="map"></div>
     </div>
     <div class="col-md-2">
-      <%= form_tag "", remote: true do  %>
+      <%= form_tag "/filterline", class: "filterline" do  %>
         <p>
-          <%= check_box_tag "electric_path" %>
+          <%= check_box_tag "electricLine" %>
           <%= label "electric_path", "electric_path" %>
         </p>
         <p>
-          <%= check_box_tag "water_path" %>
+          <%= check_box_tag "waterLine" %>
           <%= label "water_path", "water_path" %>
         </p>
         <p>
-          <%= check_box_tag "internet_path" %>
+          <%= check_box_tag "internetLine" %>
           <%= label "internet_path", "internet_path" %>
         </p>
-        <%= submit_tag "Show", class: "btn btn-primary" %>
+        <%= button_tag "Show", type: "button", class: "btn-submit btn btn-primary" %>
       <% end %>
     </div>
   </div>
 </div>
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRokdooYxhMWGY-kdWPcbDBcDkhVrAxdc&callback=initMap">
-</script
+</script>

@@ -1,3 +1,3 @@
 class Mark < ApplicationRecord
-  belongs_to :line
+  belongs_to :line, optional: true
 end

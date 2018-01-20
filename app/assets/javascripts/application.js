@@ -4,3 +4,4 @@
 //= require gentelella-custom
 //= require bootstrap
 //= require google_map
+//= require filterline
