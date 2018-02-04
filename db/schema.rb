@@ -15,21 +15,21 @@ ActiveRecord::Schema.define(version: 20180120093955) do
   create_table "lines", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "pipe_lines_id"
+    t.integer "pipe_line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pipe_lines_id"], name: "index_lines_on_pipe_lines_id"
+    t.index ["pipe_line_id"], name: "index_lines_on_pipe_line_id"
   end
 
   create_table "marks", force: :cascade do |t|
-    t.integer "prev_mark_id"
+    t.integer "index_mark"
     t.string "lat"
     t.string "lng"
     t.string "height"
-    t.integer "lines_id"
+    t.integer "line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lines_id"], name: "index_marks_on_lines_id"
+    t.index ["line_id"], name: "index_marks_on_line_id"
   end
 
   create_table "pipe_lines", force: :cascade do |t|
@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(version: 20180120093955) do
   end
 
   create_table "township_lines", force: :cascade do |t|
-    t.integer "lines_id"
-    t.integer "townships_id"
+    t.integer "line_id"
+    t.integer "township_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lines_id"], name: "index_township_lines_on_lines_id"
-    t.index ["townships_id"], name: "index_township_lines_on_townships_id"
+    t.index ["line_id"], name: "index_township_lines_on_line_id"
+    t.index ["township_id"], name: "index_township_lines_on_township_id"
   end
 
   create_table "townships", force: :cascade do |t|
