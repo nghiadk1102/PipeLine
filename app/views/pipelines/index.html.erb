@@ -1,0 +1,19 @@
+<div class="right_col" role="main">
+  <div class="row">
+    <table id="dataTable" class="display" cellspacing="0" width="100%">
+    	<thead>
+        <tr>
+        	<th>ID</th>
+          <th>Name</th>
+          <th>Size Safe</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+       </thead>
+      <tbody>
+        <%= render partial: "pipeline", collection: @pipelines %>
+       
+      </tbody>
+    </table>
+  </div>
+</div>

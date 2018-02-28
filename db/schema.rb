@@ -12,50 +12,50 @@
 
 ActiveRecord::Schema.define(version: 20180120093955) do
 
-  create_table "lines", force: :cascade do |t|
+  create_table "lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "description"
-    t.integer "pipe_line_id"
+    t.bigint "pipe_line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pipe_line_id"], name: "index_lines_on_pipe_line_id"
   end
 
-  create_table "marks", force: :cascade do |t|
+  create_table "marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "index_mark"
     t.string "lat"
     t.string "lng"
     t.string "height"
-    t.integer "line_id"
+    t.bigint "line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["line_id"], name: "index_marks_on_line_id"
   end
 
-  create_table "pipe_lines", force: :cascade do |t|
+  create_table "pipe_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.float "size_safe"
+    t.float "size_safe", limit: 24
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "township_lines", force: :cascade do |t|
-    t.integer "line_id"
-    t.integer "township_id"
+  create_table "township_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "line_id"
+    t.bigint "township_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["line_id"], name: "index_township_lines_on_line_id"
     t.index ["township_id"], name: "index_township_lines_on_township_id"
   end
 
-  create_table "townships", force: :cascade do |t|
+  create_table "townships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
