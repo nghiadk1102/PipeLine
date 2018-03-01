@@ -1,3 +1,6 @@
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
+<% flash.each do |key, value| %>
+   <div class="alert alert-<%= key %> fade in">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+   	<strong><%= key %></strong>  <%= value %>.
+  </div>
 <% end %>
