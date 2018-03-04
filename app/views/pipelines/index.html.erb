@@ -15,39 +15,9 @@
        </thead>
       <tbody>
         <%= render partial: "pipeline", collection: @pipelines %>
-       
+
       </tbody>
     </table>
   </div>
 </div>
-<div class="modal fade" id="create_pipeline" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Crete Pipeline</h4>
-      </div>
-      <div class="modal-body">
-
-        <%= form_for @new_pipeline, url: pipelines_path, method: :post do |f| %>
-          <p>
-            <%= f.label :name %>
-            <%= f.text_field :name, class: "form-control" %>
-          </p>
-          <p>
-            <%= f.label :size_safe %>
-            <%= f.text_field :size_safe, class: "form-control" %>
-          </p>
-          <p>
-            <%= f.label :description %>
-            <%= f.text_field :description, class: "form-control" %>
-          </p>
-          <%= f.submit "Create", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render "create_form" %>

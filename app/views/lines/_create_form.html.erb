@@ -1,0 +1,38 @@
+<div class="modal fade" id="create_line" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Crete Line</h4>
+      </div>
+      <%= form_for @new_line, url: lines_path, method: :post do |f| %>
+        <div class="modal-body">
+          <p>
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+          </p>
+          <p>
+            <%= f.label :description %>
+            <%= f.text_field :description, class: "form-control" %>
+          </p>
+
+          <p>
+            <%=f.label :Pipe_type %>
+            <%= f.select :pipe_line_id, pipeline_for_select.collect{|pipeline| [pipeline.name, pipeline.id]},{}, class: "form-control" %>
+          </p>
+          <%= link_to_add_fields "Add a Contact", f, :marks, "btn btn-primary", "Add a new Contact" %>
+          <div class="mark_fields">
+            <div class="row">
+              <div class="col-md-6 colum_one"></div>
+              <div class="col-md-6 colum_two"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Create", class: "btn btn-primary" %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

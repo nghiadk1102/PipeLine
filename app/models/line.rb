@@ -4,4 +4,5 @@ class Line < ApplicationRecord
   has_many :townships, through: :township_lines
 
   belongs_to :pipe_line, optional: true
+  accepts_nested_attributes_for :marks
 end

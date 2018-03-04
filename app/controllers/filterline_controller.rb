@@ -24,6 +24,6 @@ class FilterlineController < ApplicationController
   private
 
   def filter_params
-    params.permit :waterLine, :internetLine, :electricLine
+    params
   end
 end

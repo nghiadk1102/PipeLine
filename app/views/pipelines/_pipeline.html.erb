@@ -4,8 +4,8 @@
   <td><%= pipeline.size_safe %></td>
   <td><%= pipeline.description %></td>
   <td>
-    <button class="fa fa-pencil" data-toggle="modal" data-target="#<%= pipeline.id %>"></button>
-    <%= link_to "", pipeline_path(pipeline), confirm: "Are you sure?", method: :delete, class: "fa fa-trash" %>
+    <button class="fa fa-pencil button_action" data-toggle="modal" data-target="#<%= pipeline.id %>"></button>
+    <button class="button_action"><%= link_to "", pipeline_path(pipeline), confirm: "Are you sure?", method: :delete, class: "fa fa-trash" %></button>
   </td>
 </tr>
 <div class="modal fade" id="<%= pipeline.id %>" role="dialog">

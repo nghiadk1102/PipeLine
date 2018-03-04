@@ -2,6 +2,7 @@
   *= require google_map
   *= require pipeline
   *= require layout
+  *= require lines
  */
 @import "gentelella-custom";
 @import "gentelella";
