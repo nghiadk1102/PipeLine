@@ -1,0 +1,41 @@
+<tr>
+	<td><%= pipeline.id %></td>
+  <td><%= pipeline.name %></td>
+  <td><%= pipeline.size_safe %></td>
+  <td><%= pipeline.description %></td>
+  <td>
+    <button class="fa fa-pencil" data-toggle="modal" data-target="#<%= pipeline.id %>"></button>
+    <%= link_to "", pipeline_path(pipeline), confirm: "Are you sure?", method: :delete, class: "fa fa-trash" %>
+  </td>
+</tr>
+<div class="modal fade" id="<%= pipeline.id %>" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= form_for pipeline, url: pipeline_path(pipeline) do |f| %>
+        	<p>
+        		<%= f.label :name %>
+						<%= f.text_field :name, class: "form-control" %>
+        	</p>
+        	<p>
+        		<%= f.label :size_safe %>
+						<%= f.text_field :size_safe, class: "form-control" %>
+        	</p>
+					<p>
+						<%= f.label :description %>
+						<%= f.text_field :description, class: "form-control" %>
+					</p>
+					<%= f.submit "Update", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
