@@ -5,18 +5,12 @@
     </div>
     <div class="col-md-2">
       <%= form_tag "/filterline", class: "filterline" do  %>
-        <p>
-          <%= check_box_tag "electricLine" %>
-          <%= label "electric_path", "electric_path" %>
-        </p>
-        <p>
-          <%= check_box_tag "waterLine" %>
-          <%= label "water_path", "water_path" %>
-        </p>
-        <p>
-          <%= check_box_tag "internetLine" %>
-          <%= label "internet_path", "internet_path" %>
-        </p>
+        <% @pipelines.each do |pipeline| %>
+          <p>
+            <%= check_box_tag pipeline.name %>
+            <%= label pipeline.name, pipeline.name %>
+          </p>
+        <% end %>
         <%= button_tag "Show", type: "button", class: "btn-submit btn btn-primary" %>
       <% end %>
     </div>

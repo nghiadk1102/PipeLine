@@ -3,5 +3,8 @@
   <td><%= line.name %></td>
   <td><%= line.created_at %></td>
   <td><%= line.description %></td>
-  <td><button class="fa fa-eye"></button></td>
+  <td>
+  	<button class="fa fa-eye button_action"></button>
+  	<button class="button_action"><%= link_to "", line_path(line), confirm: "Are you sure?", method: :delete, class: "fa fa-trash" %></button>
+  </td>
 </tr>
