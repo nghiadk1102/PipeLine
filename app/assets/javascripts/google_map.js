@@ -12,7 +12,7 @@ function createLine(arr, pipelineName){
   var newline = new google.maps.Polyline({
     path: arr,
     geodesic: true,
-    strokeColor: '#FF0000',
+    strokeColor: getRandomColor(),
     strokeOpacity: 1.0,
     strokeWeight: 4,
     actived: false
@@ -35,4 +35,13 @@ function showInfomationPolyline() {
     this.setOptions({strokeWeight: 4, strokeColor: '#FF0000', actived: false});
     this.infomationLine.close();
   }
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
