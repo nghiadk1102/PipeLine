@@ -1,20 +1,68 @@
-class line_meeting
-	def initalize line1, line2
-		@line1 = line1
-		@line2 = line2
-	end
+require 'mathn'
 
-	def checking
-		max_lng_line1 = 0
-		max_lat_line1 = 0
-		@line1.marks.each do |mark|
-			if max_lng_line1 > mark.lng
-				max_lng_line1 = mark.lng
+class LineMeeting
+	class << self
+		def checking line1, line2
+			return false unless line1.max_lat && line1.min_lat && line2.max_lat && line1.min_lat && line1.max_lng && line2.min_lng && line2.max_lng && line1.min_lng
+			if line1.max_lat < line1.min_lat || line2.max_lat < line1.min_lat
+				return false
 			end
 
-			if max_lat_line1 > mark.lng
-				max_lat_line1 = mark.lng
+			if line1.max_lng < line2.min_lng || line2.max_lng < line1.min_lng
+				return false
 			end
+			list_marks_line1 = line1.marks.pluck :lat, :lng
+			list_marks_line2 = line2.marks.pluck :lat, :lng
+			list_intersect = []
+			list_marks_line1.each_with_index do |value1, index1| 
+				break if index1 >= list_marks_line1.size - 1
+				list_marks_line2.each_with_index do |value2, index2|
+					break if index2 >= list_marks_line2.size - 1
+					result =  checkLineIntersection(value1[0], value1[1], list_marks_line1[index1 + 1][0], list_marks_line1[index1 + 1][1], value2[0], value2[1], list_marks_line2[index2 + 1][0], list_marks_line2[index2 + 1][1])
+					if result[:onLine1] && result[:onLine2]
+						list_intersect << {lat: result[:x], lng: result[:y]}
+					end
+				end
+			end
+
+			return list_intersect
+		end
+
+		private
+
+		def checkLineIntersection line1StartX, line1StartY, line1EndX, line1EndY, line2StartX, line2StartY, line2EndX, line2EndY
+			line1StartX = line1StartX.to_f
+			line1StartY = line1StartY.to_f
+			line1EndX = line1EndX.to_f
+			line1EndY = line1EndY.to_f
+			line2StartX = line2StartX.to_f
+			line2StartY = line2StartY.to_f
+			line2EndX = line2EndX.to_f
+			line2EndY = line2EndY.to_f
+		  result = {x: nil, y: nil, onLine1: false, onLine2: false}
+		  denominator = ((line2EndY - line2StartY) * (line1EndX - line1StartX)) - ((line2EndX - line2StartX) * (line1EndY - line1StartY))
+		  return if denominator == 0
+		  a = line1StartY - line2StartY
+		  b = line1StartX - line2StartX
+		  numerator1 = ((line2EndX - line2StartX) * a) - ((line2EndY - line2StartY) * b)
+		  numerator2 = ((line1EndX - line1StartX)) * a - ((line1EndY - line1StartY) * b)
+		  a = numerator1 / denominator
+		  b = numerator2 / denominator
+
+		  result[:x] = line1StartX + (a * (line1EndX - line1StartX))
+		  result[:y] = line1StartY + (a * (line1EndY - line1StartY))
+
+		  x = line2StartX + (b * (line2EndX - line2StartX))
+		  y = line2StartX + (b * (line2EndY - line2StartY))
+
+		  if (a > 0 && a < 1)
+		    result[:onLine1] = true
+		  end
+
+		  if (b > 0 && b < 1)
+		    result[:onLine2] = true
+		  end
+		   return result
 		end
 	end
 end

@@ -8,14 +8,15 @@ function initMap() {
   list_line = [];
 }
 
-function createLine(arr, pipelineName){
+function createLine(arr, pipelineName, color){
   var newline = new google.maps.Polyline({
     path: arr,
     geodesic: true,
-    strokeColor: getRandomColor(),
+    strokeColor: color,
     strokeOpacity: 1.0,
     strokeWeight: 4,
-    actived: false
+    actived: false,
+    defaultColor: color
   });
   var infomationLine = new google.maps.InfoWindow({
     content: pipelineName
@@ -28,20 +29,12 @@ function createLine(arr, pipelineName){
 
 function showInfomationPolyline() {
   if(this.actived == false){
-    this.setOptions({strokeColor: 'blue', strokeWeight: 6, actived: true});
+    this.setOptions({strokeColor: '#FF0000', strokeWeight: 6, actived: true});
     line = this;
     this.infomationLine.open(map);
   } else {
-    this.setOptions({strokeWeight: 4, strokeColor: '#FF0000', actived: false});
+    this.setOptions({strokeWeight: 4, strokeColor: this.defaultColor, actived: false});
     this.infomationLine.close();
   }
 }
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
