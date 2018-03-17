@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Log in</h2>
+
+    <%= form_for :user, url: session_path(:user) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off",
+          class: "form-control"  %>
+      </div>
+
+
+      <div class="actions">
+        <%= f.submit "Log in", class: "btn btn-primary"  %>
+      </div>
+    <% end %>
+  </div>
+</div>

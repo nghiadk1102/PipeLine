@@ -70,6 +70,7 @@ namespace :db do
       end
 
       puts "create user"
+        User.create! email: "admin@gmail.com", password: "123456", password_confirmation: "123456"
     end
   end
 end
