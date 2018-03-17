@@ -13,9 +13,9 @@
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/gentelella/1.4.0/css/custom.min.css">
       <div class="main_container">
         <% if user_signed_in? %>
-          <%= render "layouts/flash" %>
           <%= render "layouts/sidenav" %>
           <%= render "layouts/topnav" %>
+          <%= render "layouts/flash" %>
         <% end %>
         <%= yield %>
       </div>
