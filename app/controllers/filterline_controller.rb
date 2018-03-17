@@ -7,10 +7,10 @@ class FilterlineController < ApplicationController
       if pipeline
         @data[pipeline.name] = []
         pipeline.lines.each do |line|
-          @data[pipeline.name] << {"#{line.name}": []}
+          @data[pipeline.name] << {"#{line.name}": {color: line.color, marks: []}}
           marks = Mark.where(line_id: line.id).order(index_mark: "ASC")
           marks.each do |mark|
-            @data[pipeline.name].last[line.name.to_sym] << {
+            @data[pipeline.name].last[line.name.to_sym][:marks] << {
               lat: mark.lat.to_f,
               lng: mark.lng.to_f
             }

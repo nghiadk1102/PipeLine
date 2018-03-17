@@ -8,6 +8,7 @@ class LinesController < ApplicationController
 
   def create
     line = Line.new lineparams
+    line.color = random_color
     if line.save
     	flash[:success] = "Create Line successfully"
 	   else
@@ -33,5 +34,9 @@ class LinesController < ApplicationController
 
   def lineparams
   	params.require(:line).permit :name,  :description, :pipe_line_id, marks_attributes: [:lat, :lng, :index_mark]
+  end
+
+  def random_color
+    "#%06x" % (rand * 0xffffff)
   end
 end
