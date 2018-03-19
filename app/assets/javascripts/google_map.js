@@ -38,3 +38,15 @@ function showInfomationPolyline() {
   }
 }
 
+
+function initMapLine() {
+  var uluru = {lat: 21.043285, lng: 105.793673};
+  var thisMap = document.getElementById('map-line');
+  map_line = new google.maps.Map(thisMap, {
+    zoom: 16,
+    center: uluru,
+    gestureHandling: 'greedy',
+  });
+  map_line['line'] = null;
+}
+

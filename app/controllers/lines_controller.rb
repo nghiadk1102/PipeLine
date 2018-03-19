@@ -1,10 +1,22 @@
 class LinesController < ApplicationController
-	before_action :load_line, only: [:update, :destroy]
+	before_action :load_line, only: [:update, :destroy, :show]
 
 	def index
 		@lines = Line.all
     @new_line = Line.new
 	end
+
+  def show
+    marks = Mark.where(line_id: @line.id).order(index_mark: "ASC")
+    data = {color: @line.color, marks: []}
+    marks.each do |mark|
+      data[:marks] << {
+        lat: mark.lat.to_f,
+        lng: mark.lng.to_f
+      }
+    end
+    render json: {data: data, message: "success"}
+  end
 
   def create
     line = Line.new lineparams
@@ -29,6 +41,7 @@ class LinesController < ApplicationController
   private
 
   def load_line
+    return unless params[:id]
 		@line = Line.find_by id: params[:id]
 	end
 

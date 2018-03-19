@@ -13,6 +13,34 @@ $(document).ready(function() {
   $('body').on('click', '.delete_mark_field', function(){
     $(this).parent().remove();
   });
+
+  $('body').on('click', '.show-line', function() {
+    var line_id = $(this).data('id');
+    if (map_line['line'] != null) {
+      map_line['line'].setMap(null);
+    }
+    $.ajax({
+      url: '/lines/' + line_id,
+      type: 'GET',
+      dataType: 'json',
+      data: {id: line_id}
+    })
+    .done(function(result) {
+      console.log("success");
+      if(result['message'] === 'success'){
+        map_line['line'] = createLine(result['data']['marks'], '', result['data']['color']);
+        map_line['line'].setMap(map_line);
+      }
+
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+    
+  });
 });
 
 function swap_index(){
