@@ -155,12 +155,24 @@ namespace :db do
         ]
       ]
 
+      def check_intersect_line line1
+        Line.all.where.not(id: line1.id).each do |line|
+          values = LineMeeting.checking line1, line
+          if values
+            values.each do |value|
+              line1.intersect_marks.create! lat: value[:lat], lng: value[:lng], second_line_id: line.id
+            end
+          end
+        end
+      end
+
       paths.each_with_index do |path, index|
         line = Line.create! name: "path#{index}", pipe_line_id: rand(1..4),
           color: "#%06x" % (rand * 0xffffff)
         path.each do |position|
           line.marks.create! lat: position[0], lng: position[1], height: 0
         end
+        check_intersect_line line
       end
 
       puts "create user"

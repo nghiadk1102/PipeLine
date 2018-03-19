@@ -28,10 +28,10 @@ class Line < ApplicationRecord
   private
 
   def check_intersect_line
-  	Line.all.where.not(id: self.id).each do |line|
-  		values = LineMeeting.checking self, line
-  		if values
-  			values.each do |value|
+    Line.all.where.not(id: self.id).each do |line|
+      values = LineMeeting.checking self, line
+      if values
+        values.each do |value|
   				self.intersect_marks.create! lat: value[:lat], lng: value[:lng], second_line_id: line.id
   			end
   		end

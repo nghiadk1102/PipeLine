@@ -6,9 +6,10 @@ function initMap() {
     gestureHandling: 'greedy'
   });
   list_line = [];
+  list_mark = [];
 }
 
-function createLine(arr, pipelineName, color){
+function createLine(arr, pipelineName, color, id){
   var newline = new google.maps.Polyline({
     path: arr,
     geodesic: true,
@@ -16,7 +17,8 @@ function createLine(arr, pipelineName, color){
     strokeOpacity: 1.0,
     strokeWeight: 4,
     actived: false,
-    defaultColor: color
+    defaultColor: color,
+    id: id
   });
   var infomationLine = new google.maps.InfoWindow({
     content: pipelineName
@@ -32,9 +34,29 @@ function showInfomationPolyline() {
     this.setOptions({strokeColor: '#FF0000', strokeWeight: 6, actived: true});
     line = this;
     this.infomationLine.open(map);
+    $.ajax({
+      url: '/intersect_marks',
+      type: 'GET',
+      dataType: 'json',
+      data: {line_id: this.id}
+    })
+    .done(function(result) {
+      if(result['status'] == 'success') {
+        resetmark();
+        $.each(result['data'], function(index, val) {
+          var mark = createMark(val);
+          mark.setMap(map);
+          list_mark.push(mark);
+        });
+      }
+    })
+    .fail(function() {
+      console.log("error");
+    });
   } else {
     this.setOptions({strokeWeight: 4, strokeColor: this.defaultColor, actived: false});
     this.infomationLine.close();
+    resetmark();
   }
 }
 
@@ -50,3 +72,17 @@ function initMapLine() {
   map_line['line'] = null;
 }
 
+function createMark(arr) {
+  var marker = new google.maps.Marker({
+    position: {lat: parseFloat(arr[1]), lng: parseFloat(arr[2])},
+    map: map,
+    title: 'intersect marks id' + arr[0]
+  });
+  return marker;
+}
+
+function resetmark() {
+  list_mark.forEach(function(mark, index) {
+    mark.setMap(null);
+  });
+}

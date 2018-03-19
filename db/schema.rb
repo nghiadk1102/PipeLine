@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120093955) do
+ActiveRecord::Schema.define(version: 20180316113559) do
+
+  create_table "intersect_marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "lat"
+    t.string "lng"
+    t.string "description"
+    t.integer "first_line_id"
+    t.integer "second_line_id"
+  end
 
   create_table "lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "description"
+    t.string "color"
     t.bigint "pipe_line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
