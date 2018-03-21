@@ -41,7 +41,7 @@ class LineMeeting
 			line2EndY = line2EndY.to_f
 		  result = {x: nil, y: nil, onLine1: false, onLine2: false}
 		  denominator = ((line2EndY - line2StartY) * (line1EndX - line1StartX)) - ((line2EndX - line2StartX) * (line1EndY - line1StartY))
-		  return if denominator == 0
+		  return result if denominator == 0
 		  a = line1StartY - line2StartY
 		  b = line1StartX - line2StartX
 		  numerator1 = ((line2EndX - line2StartX) * a) - ((line2EndY - line2StartY) * b)

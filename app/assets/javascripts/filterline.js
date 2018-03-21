@@ -18,7 +18,7 @@ $(document).ready(function() {
           var pipelineName = key;
           $.each(value, function(key, value){ //each lines
             $.each(value, function(key, value){ //each marks
-              var line = createLine(value['marks'], pipelineName, value['color']);
+              var line = createLine(value['marks'], pipelineName, value['color'], value['id']);
               line.setMap(map);
               list_line.push(line);
             });

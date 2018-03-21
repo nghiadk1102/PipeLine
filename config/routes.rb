@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   post "/filterline", to: "filterline#filter"
   resources :pipelines
   resources :lines
+  resources :intersect_marks
 end
