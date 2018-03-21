@@ -7,15 +7,19 @@ class LinesController < ApplicationController
 	end
 
   def show
-    marks = Mark.where(line_id: @line.id).order(index_mark: "ASC")
+    @marks = Mark.where(line_id: @line.id).order(index_mark: :ASC)
+    @intersect_marks = IntersectMark.where("first_line_id = ? OR second_line_id = ?", @line.id, @line.id)
     data = {color: @line.color, marks: []}
-    marks.each do |mark|
+    @marks.each do |mark|
       data[:marks] << {
         lat: mark.lat.to_f,
         lng: mark.lng.to_f
       }
     end
-    render json: {data: data, message: "success"}
+    respond_to do |format|
+      format.html
+      format.json {render json: {data: data, message: "success"}}
+    end
   end
 
   def create

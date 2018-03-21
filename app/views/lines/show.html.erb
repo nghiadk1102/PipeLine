@@ -1,0 +1,68 @@
+<div class="right_col" role="main">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="information-line" data-line="<%= @line.id %>">
+        <p>
+          <label>Name</label><span><%= @line.name %></span>
+        </p>
+        <p>
+          <label>Type of line:</label><span><%= @line.pipe_line_name %></span>
+        </p>
+        <p>
+          <label>Description</label><span><%= @line.description %></span>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div id="map-line" class="mini-map"></div>
+    </div>
+  </div>
+  <div class="row">
+    <label for=""><strong>InterSect Mark</strong></label>
+    <div class="mark-table">
+      <table id="dataTable" class="display" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Lat</th>
+            <th>lng</th>
+            <th>Intersect Line</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @intersect_marks.each do |intersect_mark| %>
+            <tr>
+              <td>
+                <%= intersect_mark.id %>
+              </td>
+              <td>
+                <%= intersect_mark.lat %>
+              </td>
+              <td>
+                <%= intersect_mark.lng %>
+              </td>
+              <td>
+                <%= find_intersect_line @line.id, intersect_mark.first_line_id, intersect_mark.second_line_id %>
+              </td>
+              <td>
+                <%= intersect_mark.description %>
+              </td>
+              <td>
+                <button class="fa fa-eye button_action show-mark" data-id="<%= intersect_mark.id %>"></button>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= render "script_google_map_init" %>
+<script>
+  $(document).ready(function() {
+    var line = $('.information-line').data('line');
+    get_line(line);
+  });
+</script>

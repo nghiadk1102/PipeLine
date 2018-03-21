@@ -15,7 +15,7 @@ function createLine(arr, pipelineName, color, id){
     geodesic: true,
     strokeColor: color,
     strokeOpacity: 1.0,
-    strokeWeight: 4,
+    strokeWeight: 5,
     actived: false,
     defaultColor: color,
     id: id
@@ -32,6 +32,9 @@ function createLine(arr, pipelineName, color, id){
 function showInfomationPolyline() {
   if(this.actived == false){
     this.setOptions({strokeColor: '#FF0000', strokeWeight: 6, actived: true});
+    if(typeof(map) == "undefined"){
+      return;
+    }
     line = this;
     this.infomationLine.open(map);
     $.ajax({
