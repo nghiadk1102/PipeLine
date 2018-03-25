@@ -23,12 +23,12 @@
       <table id="dataTable" class="display" cellspacing="0" width="100%">
         <thead>
           <tr>
-            <th>ID</th>
+            <th class="id">ID</th>
             <th>Lat</th>
             <th>lng</th>
             <th>Intersect Line</th>
             <th>Description</th>
-            <th>Action</th>
+            <th class="action">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -50,7 +50,7 @@
                 <%= intersect_mark.description %>
               </td>
               <td>
-                <button class="fa fa-eye button_action show-mark" data-id="<%= intersect_mark.id %>"></button>
+                <button class="fa fa-eye button_action show-mark" data-mark="<%= [intersect_mark.id, intersect_mark.lat, intersect_mark.lng] %>"></button>
               </td>
             </tr>
           <% end %>

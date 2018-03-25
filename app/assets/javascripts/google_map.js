@@ -9,7 +9,7 @@ function initMap() {
   list_mark = [];
 }
 
-function createLine(arr, pipelineName, color, id){
+function createLine(arr, pipelineName, color, id, lineName){
   var newline = new google.maps.Polyline({
     path: arr,
     geodesic: true,
@@ -21,7 +21,11 @@ function createLine(arr, pipelineName, color, id){
     id: id
   });
   var infomationLine = new google.maps.InfoWindow({
-    content: pipelineName
+    content: '<div>' +
+             '<p>Name: ' + lineName + '</p>' +
+             '<p>type: ' + pipelineName + '</p>' +
+             '</div>'
+
   });
   infomationLine.setPosition(arr[0]);
   newline["infomationLine"] = infomationLine;
@@ -47,7 +51,7 @@ function showInfomationPolyline() {
       if(result['status'] == 'success') {
         resetmark();
         $.each(result['data'], function(index, val) {
-          var mark = createMark(val);
+          var mark = createMark(val, map);
           mark.setMap(map);
           list_mark.push(mark);
         });
@@ -75,11 +79,24 @@ function initMapLine() {
   map_line['line'] = null;
 }
 
-function createMark(arr) {
+function createMark(arr, map) {
   var marker = new google.maps.Marker({
     position: {lat: parseFloat(arr[1]), lng: parseFloat(arr[2])},
     map: map,
     title: 'intersect marks id' + arr[0]
+  });
+
+  var contentString = '<div id="content">' +
+                      '<p>' +
+                      '[' + arr[1] + ',' + arr[2] + ']' +
+                      '</p>' +
+                      '</div>'
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
   });
   return marker;
 }
