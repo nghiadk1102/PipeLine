@@ -7,3 +7,4 @@
 //= require filterline
 //= require datatable
 //= require line
+//= require mark

@@ -9,6 +9,8 @@ class Line < ApplicationRecord
 
   after_create :check_intersect_line
 
+  delegate :name, to: :pipe_line, prefix: true
+
   def max_lat
   	self.marks.pluck(:lat).max
   end

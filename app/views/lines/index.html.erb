@@ -27,10 +27,8 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Crete Line</h4>
       </div>
-      <div id="map-line"></div>
+      <div id="map-line" class="normal-map"></div>
     </div>
   </div>
 </div>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRokdooYxhMWGY-kdWPcbDBcDkhVrAxdc&callback=initMapLine">
-</script>
+<%= render "script_google_map_init" %>

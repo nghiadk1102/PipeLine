@@ -1,6 +1,6 @@
 <tr>
 	<td><%= line.id %></td>
-  <td><%= line.name %></td>
+  <td><%= link_to line.name, line_path(line) %></td>
   <td><%= line.created_at %></td>
   <td><%= line.description %></td>
   <td>
