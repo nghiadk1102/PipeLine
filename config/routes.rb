@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :pipelines
   resources :lines
   resources :intersect_marks
+  resources :posts
+  get "/create_posts", to: "posts#add"
 end

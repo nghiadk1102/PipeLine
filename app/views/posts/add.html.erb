@@ -1,0 +1,16 @@
+<div class="right_col" role="main">
+  <div class="row">
+    <span><h3>Create News</h3></span>
+    <%= form_tag "/posts", method: :post do %>
+    	<%= label_tag "title" %>
+    	<%= text_field_tag "title", nil, class: "form-control" %>
+    	<%= label_tag "tags" %>
+    	<%= text_field_tag "tags", nil, class: "form-control" %>
+    	<%= label_tag "content" %>
+    	<%= text_area_tag "content", nil, rows: 10, class: "form-control" %>
+    	<%= submit_tag "Submit", class: "btn btn-primary" %>
+    	<%= button_tag "Reset", type: "reset", class: "btn  btn-warning" %>
+    	<%= button_tag "Cancel", type: "cancel", class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>
