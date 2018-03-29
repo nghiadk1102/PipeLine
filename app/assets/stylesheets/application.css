@@ -3,6 +3,7 @@
   *= require pipeline
   *= require layout
   *= require lines
+  *= require posts
  */
 @import "gentelella-custom";
 @import "gentelella";
