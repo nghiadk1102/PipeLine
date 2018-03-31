@@ -1,5 +1,6 @@
 class FilterlineController < ApplicationController
   def filter
+    byebug
     @data = {}
     a = filter_params.keys
     a.each do |pipeline|
