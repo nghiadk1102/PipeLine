@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+	before_action :find_post, only: :show
+
 	def index
 		@posts = Post.all
 	end
@@ -16,7 +18,13 @@ class PostsController < ApplicationController
 
 	def add; end
 
+	def show; end
+
 	private
+
+	def find_post
+		@post = Post.find_by id: params[:id]
+	end
 
 	def post_params
 		params.permit :title, :tag, :content

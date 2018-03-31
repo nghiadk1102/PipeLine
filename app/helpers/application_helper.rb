@@ -6,4 +6,8 @@ module ApplicationHelper
     end
     link_to name, "#", :onclick => h("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"), :class => cssClass, :title => title
   end
+
+  def list_posts
+    Post.all
+  end
 end

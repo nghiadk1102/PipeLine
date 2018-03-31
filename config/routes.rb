@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root "plainpage#index"
   post "/filterline", to: "filterline#filter"
-  resources :pipelines
-  resources :lines
-  resources :intersect_marks
-  resources :posts
+  resources :pipelines, except: [:show, :edit]
+  resources :lines, only: [:index, :show, :create, :destroy]
+  resources :intersect_marks, only: :index
+  resources :posts, only: [:index, :create, :show]
   get "/create_posts", to: "posts#add"
 end

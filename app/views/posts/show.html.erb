@@ -1,0 +1,37 @@
+<div class="right_col" role="main">
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="mt-4"><%= @post.title %></h1>
+          <p class="lead">
+            by
+            <a href="#"><%= @post.email %></a>
+          </p>
+
+          <hr>
+
+          <p>Posted on <%= @post.created_at %></p>
+
+          <hr>
+
+          <!-- Post Content -->
+          <p><%= @post.content %></p>
+
+          <hr>
+
+          <!-- Comments Form -->
+          <div class="card my-4">
+            <h5 class="card-header">Leave a Comment:</h5>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
