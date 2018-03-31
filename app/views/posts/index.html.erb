@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <h4>
                       <strong>
-                        <%= post.title %>    
+                        <%= link_to post.title, post_path(post.id) %>
                       </strong>
                     </h4>
                 </div>
@@ -18,7 +18,7 @@
                     <span class="glyphicon glyphicon-user"></span>by <a href="#"><%= post.email %></a> | <span class="glyphicon glyphicon-calendar">
                     </span><%= post.created_at %> | <span class="glyphicon glyphicon-comment"></span><a href="#">
                         3 Comments</a> | <i class="icon-share"></i><a href="#">39 Shares</a> | <span class="glyphicon glyphicon-tags">
-                        </span>Tags : 
+                        </span>Tags :
                           <a href="#"><span class="label label-info">Snipp</span></a>
                           <a href="#"><span class="label label-info">Bootstrap</span></a>
                           <a href="#"><span class="label label-info">UI</span></a>

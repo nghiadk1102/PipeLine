@@ -5,6 +5,7 @@
       <div id="map"></div>
     </div>
     <div class="col-md-2">
+      <span><h5>Filter Line:</h5></span>
       <%= form_tag "/filterline", class: "filterline" do  %>
         <% @pipelines.each do |pipeline| %>
           <p>

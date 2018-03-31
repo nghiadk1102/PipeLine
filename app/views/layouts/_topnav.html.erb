@@ -32,54 +32,19 @@
             <span class="badge bg-green">6</span>
           </a>
           <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-            <li>
-              <a>
-                <span class="image"><img src="img.jpg" alt="Profile Image" /></span>
-                <span>
-                  <span>John Smith</span>
-                  <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="image"><img src="img.jpg" alt="Profile Image" /></span>
-                <span>
-                  <span>John Smith</span>
-                  <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="image"><img src="img.jpg" alt="Profile Image" /></span>
-                <span>
-                  <span>John Smith</span>
-                  <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="image"><img src="img.jpg" alt="Profile Image" /></span>
-                <span>
-                  <span>John Smith</span>
-                  <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>
+            <% list_posts&.each do |post| %>
+              <li>
+                <%= link_to post_path(post.id) do %>
+                  <span>
+                    <span><%= post.email %></span>
+                    <span class="time"><%= post.updated_at %></span>
+                  </span>
+                  <span class="message">
+                    <%= post.title %>
+                  </span>
+                <% end %>
+              </li>
+            <% end %>
             <li>
               <div class="text-center">
                 <a>

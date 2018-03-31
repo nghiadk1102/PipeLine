@@ -20,7 +20,7 @@
             <%=f.label :Pipe_type %>
             <%= f.select :pipe_line_id, pipeline_for_select.collect{|pipeline| [pipeline.name, pipeline.id]},{}, class: "form-control" %>
           </p>
-          <%= link_to_add_fields "Add a Contact", f, :marks, "btn btn-primary", "Add a new Contact" %>
+          <%= link_to_add_fields "Add a Mark", f, :marks, "btn btn-primary", "Add a new Contact" %>
           <div class="mark_fields">
             <div class="row">
               <div class="col-md-6 colum_one"></div>
