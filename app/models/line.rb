@@ -11,6 +11,7 @@ class Line < ApplicationRecord
 
   delegate :name, to: :pipe_line, prefix: true
 
+  validates :name, presence: true
   def max_lat
   	self.marks.pluck(:lat).max
   end

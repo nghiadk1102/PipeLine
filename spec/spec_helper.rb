@@ -8,4 +8,14 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
   config.shared_context_metadata_behavior = :apply_to_host_groups
+  SimpleCov.start do
+    add_filter "test/"
+    add_filter "config/"
+    add_filter "vendor/"
+
+    add_group "Controllers", "app/controllers"
+    add_group "Models", "app/models"
+    add_group "Helpers", "app/helpers"
+    add_group "Views", "app/views"
+  end
 end

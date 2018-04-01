@@ -25,8 +25,10 @@ group :development, :test do
   gem "rspec-rails", "~> 3.7"
   gem "selenium-webdriver"
   gem 'simplecov', require: false, group: :test
-  gem "factory_bot"
+  gem "factory_bot_rails"
   gem "ffaker"
+  gem "rails-controller-testing"
+  gem "shoulda-matchers", "~> 3.1"
 end
 
 group :development do
