@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resources :lines, only: [:index, :show, :create, :destroy]
   resources :intersect_marks, only: :index
   resources :posts, only: [:index, :create, :show]
+  resources :contruction_types, except: [:show, :edit]
+  resources :contructions
   get "/create_posts", to: "posts#add"
 end

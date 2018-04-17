@@ -50,7 +50,7 @@ class LinesController < ApplicationController
 	end
 
   def lineparams
-  	params.require(:line).permit :name,  :description, :pipe_line_id, marks_attributes: [:lat, :lng, :index_mark]
+  	params.require(:line).permit :name,  :description, :struction_id, :struction_type, marks_attributes: [:lat, :lng, :index_mark]
   end
 
   def random_color

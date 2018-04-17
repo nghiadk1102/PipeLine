@@ -18,7 +18,8 @@
 
           <p>
             <%=f.label :Pipe_type %>
-            <%= f.select :pipe_line_id, pipeline_for_select.collect{|pipeline| [pipeline.name, pipeline.id]},{}, class: "form-control" %>
+            <%= f.select :struction_id, pipeline_for_select.collect{|pipeline| [pipeline.name, pipeline.id]},{}, class: "form-control" %>
+            <%= f.hidden_field :struction_type, value: :PipeLine %>
           </p>
           <%= link_to_add_fields "Add a Mark", f, :marks, "btn btn-primary", "Add a new Contact" %>
           <div class="mark_fields">

@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327103341) do
+ActiveRecord::Schema.define(version: 20180408101132) do
+
+  create_table "contruction_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.text "description"
+  end
+
+  create_table "contructions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.text "description"
+    t.float "min_height", limit: 24
+    t.float "max_height", limit: 24
+    t.bigint "contruction_types_id"
+    t.index ["contruction_types_id"], name: "index_contructions_on_contruction_types_id"
+  end
 
   create_table "intersect_marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "lat"
@@ -24,17 +38,17 @@ ActiveRecord::Schema.define(version: 20180327103341) do
     t.string "name"
     t.string "description"
     t.string "color"
-    t.bigint "pipe_line_id"
+    t.integer "struction_id"
+    t.string "struction_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pipe_line_id"], name: "index_lines_on_pipe_line_id"
   end
 
   create_table "marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "index_mark"
     t.string "lat"
     t.string "lng"
-    t.string "height"
+    t.float "height", limit: 24
     t.bigint "line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,5 +104,6 @@ ActiveRecord::Schema.define(version: 20180327103341) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "contructions", "contruction_types", column: "contruction_types_id"
   add_foreign_key "posts", "users"
 end

@@ -3,6 +3,10 @@ module LinesHelper
 		PipeLine.all
 	end
 
+	def contruction_type_for_select
+		ContructionType.all
+	end
+
 	def find_intersect_line id, first_id, second_id
 		if id == first_id
 			name = Line.where(id: second_id).first&.name

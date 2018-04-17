@@ -4,7 +4,8 @@ class CreateLines < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :description
       t.string :color
-      t.references :pipe_line, foregin_key: true
+      t.integer :struction_id
+      t.string :struction_type
       t.timestamps
     end
   end

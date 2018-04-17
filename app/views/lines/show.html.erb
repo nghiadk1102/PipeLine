@@ -2,14 +2,15 @@
   <div class="row">
     <div class="col-md-8">
       <div class="information-line" data-line="<%= @line.id %>">
+        <label for=""><h4><strong>Infomation</strong></h4></label>
         <p>
-          <label>Name</label><span><%= @line.name %></span>
+          <label>Name: </label><span><%= @line.name %></span>
         </p>
         <p>
-          <label>Type of line:</label><span><%= @line.pipe_line_name %></span>
+          <label>Type of line: </label><span><%= @line.struction_name %></span>
         </p>
         <p>
-          <label>Description</label><span><%= @line.description %></span>
+          <label>Description: </label><span><%= @line.description %></span>
         </p>
       </div>
     </div>
@@ -18,7 +19,7 @@
     </div>
   </div>
   <div class="row">
-    <label for=""><strong>InterSect Mark</strong></label>
+    <label for=""><h4><strong>InterSect Mark</strong></h4></label>
     <div class="mark-table">
       <table id="dataTable" class="display" cellspacing="0" width="100%">
         <thead>

@@ -22,8 +22,8 @@ function createLine(arr, pipelineName, color, id, lineName){
   });
   var infomationLine = new google.maps.InfoWindow({
     content: '<div>' +
-             '<p>Name: ' + lineName + '</p>' +
-             '<p>type: ' + pipelineName + '</p>' +
+             '<p><strong>Name: </strong>' + lineName + '</p>' +
+             '<p><strong>type: </strong>' + pipelineName + '</p>' +
              '</div>'
 
   });

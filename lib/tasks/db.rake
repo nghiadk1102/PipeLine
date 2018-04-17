@@ -24,8 +24,8 @@ namespace :db do
 
       puts "create Lines"
       # byebug
-      Line.create! name: "Electtric01", pipe_line_id: 1
-      Line.create! name: "Electtric02", pipe_line_id: 1
+      Line.create! name: "Electtric01", struction_id: 1, struction_type: PipeLine.name
+      Line.create! name: "Electtric02", struction_id: 1, struction_type: PipeLine.name
 
       puts "create marks"
 
@@ -167,8 +167,8 @@ namespace :db do
       end
 
       paths.each_with_index do |path, index|
-        line = Line.create! name: "path#{index}", pipe_line_id: rand(1..4),
-          color: "#%06x" % (rand * 0xffffff)
+        line = Line.create! name: "path#{index}", struction_id: rand(1..4),
+          color: "#%06x" % (rand * 0xffffff), struction_type: PipeLine.name
         path.each do |position|
           line.marks.create! lat: position[0], lng: position[1], height: 0
         end
