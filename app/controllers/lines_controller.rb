@@ -34,7 +34,7 @@ class LinesController < ApplicationController
   end
 
   def destroy
-  	if @line.destroy
+  	if @line&.destroy
     	flash[:success] = "Delete Line successfully"
     else
 	   	flash[:error] = "Delete line error"

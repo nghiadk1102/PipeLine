@@ -1,8 +1,9 @@
 class FilterlineController < ApplicationController
   def filter
     @data = {}
-    a = filter_params.keys
-    a.each do |pipeline|
+    pipe_line_names = filter_params.keys
+    return render json: {message: "successfully"} if pipe_line_names.blank?
+    pipe_line_names.each do |pipeline|
       pipeline = PipeLine.find_by name: pipeline
       if pipeline
         @data[pipeline.name] = []
