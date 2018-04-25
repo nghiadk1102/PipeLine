@@ -4,12 +4,14 @@ class Line < ApplicationRecord
   has_many :townships, through: :township_lines
   has_many :intersect_marks, foreign_key: "first_line_id"
 
-  belongs_to :pipe_line, optional: true
+  belongs_to :struction, optional: true, polymorphic: true
   accepts_nested_attributes_for :marks
 
   after_create :check_intersect_line
+  after_destroy :delete_intersect_mark
 
-  delegate :name, to: :pipe_line, prefix: true
+  delegate :name, to: :struction, prefix: true
+  delegate :size_safe, to: :struction
 
   validates :name, presence: true
   def max_lat
@@ -39,5 +41,13 @@ class Line < ApplicationRecord
   			end
   		end
   	end
+  end
+
+  def delete_intersect_mark
+    ActiveRecord::Base.transaction do
+      IntersectMark.where("first_line_id = ? OR second_line_id = ?", self.id, self.id).each do |mark|
+        mark.delete
+      end
+    end
   end
 end

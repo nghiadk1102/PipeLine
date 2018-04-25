@@ -1,14 +1,14 @@
 <tr>
-  <td><%= pipeline.id %></td>
-  <td><%= pipeline.name %></td>
-  <td><%= pipeline.size_safe %></td>
-  <td><%= pipeline.description %></td>
+  <td><%= contruction.id %></td>
+  <td><%= contruction.name %></td>
+  <td><%#= pipeline.size_safe %></td>
+  <td><%= contruction.description %></td>
   <td>
-    <button class="fa fa-pencil button_action" data-toggle="modal" data-target="#<%= pipeline.id %>"></button>
-    <button class="button_action"><%= link_to "", pipeline_path(pipeline), confirm: "Are you sure?", method: :delete, class: "fa fa-trash" %></button>
+    <button class="fa fa-pencil button_action" data-toggle="modal" data-target="#<%= contruction.id %>"></button>
+    <button class="button_action"><%= link_to "", contruction_path(contruction), confirm: "Are you sure?", method: :delete, class: "fa fa-trash" %></button>
   </td>
 </tr>
-<div class="modal fade" id="<%= pipeline.id %>" role="dialog">
+<div class="modal fade" id="<%= contruction.id %>" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -17,14 +17,14 @@
       </div>
       <div class="modal-body">
 
-        <%= form_for pipeline, url: pipeline_path(pipeline) do |f| %>
+        <%= form_for contruction, url: contruction_path(contruction) do |f| %>
           <p>
             <%= f.label :name %>
             <%= f.text_field :name, class: "form-control" %>
           </p>
           <p>
-            <%= f.label :size_safe %>
-            <%= f.text_field :size_safe, class: "form-control" %>
+            <%#= f.label :size_safe %>
+            <%#= f.text_field :size_safe, class: "form-control" %>
           </p>
           <p>
             <%= f.label :description %>

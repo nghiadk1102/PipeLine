@@ -1,0 +1,23 @@
+<div class="right_col" role="main">
+  <div class="row">
+    <h3>Type Contruction:</h3>
+    <button class="fa fa-plus" data-toggle="modal" data-target="#create_pipeline"></button><span>Create Contruction</span>
+  </div>
+  <div class="row">
+    <table id="dataTable" class="display" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th class="id">ID</th>
+          <th>Name</th>
+          <th>number of contruction</th>
+          <th>Description</th>
+          <th class="action">Action</th>
+        </tr>
+       </thead>
+      <tbody>
+        <%= render partial: "contruction_type", collection: @contruction_types %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%= render "create_form" %>
