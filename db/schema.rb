@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20180408101132) do
     t.text "description"
     t.float "min_height", limit: 24
     t.float "max_height", limit: 24
+    t.float "size_safe", limit: 24
     t.bigint "contruction_types_id"
     t.index ["contruction_types_id"], name: "index_contructions_on_contruction_types_id"
   end
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20180408101132) do
   create_table "intersect_marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "lat"
     t.string "lng"
+    t.string "height"
     t.string "description"
     t.integer "first_line_id"
     t.integer "second_line_id"
@@ -48,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180408101132) do
     t.integer "index_mark"
     t.string "lat"
     t.string "lng"
-    t.float "height", limit: 24
+    t.string "height"
     t.bigint "line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

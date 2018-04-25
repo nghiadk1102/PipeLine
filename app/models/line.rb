@@ -11,6 +11,7 @@ class Line < ApplicationRecord
   after_destroy :delete_intersect_mark
 
   delegate :name, to: :struction, prefix: true
+  delegate :size_safe, to: :struction
 
   def max_lat
   	self.marks.pluck(:lat).max
