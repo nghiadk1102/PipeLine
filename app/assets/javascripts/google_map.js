@@ -7,6 +7,62 @@ function initMap() {
   });
   list_line = [];
   list_mark = [];
+  var isClosed = false;
+  var enablePolygon = true;
+  var polygonMarkers = [];
+  var poly = new google.maps.Polyline({ map: map, path: [], strokeColor: "#FF0000", strokeOpacity: 1.0, strokeWeight: 2 });
+  google.maps.event.addListener(map, 'click', function (clickEvent) {
+    var enablePolygon = $('#enable-polygon')[0].checked;
+    if (isClosed || !enablePolygon){
+      return;
+    }
+    var markerIndex = poly.getPath().length;
+    var isFirstMarker = markerIndex === 0;
+    var marker = new google.maps.Marker({ map: map, position: clickEvent.latLng, draggable: true });
+    polygonMarkers.push(marker);
+    if (isFirstMarker) {
+      google.maps.event.addListener(marker, 'click', function () {
+        if (isClosed)
+          return;
+        var path = poly.getPath();
+        poly.setMap(null);
+        poly = new google.maps.Polygon({ map: map, path: path, strokeColor: "#FF0000", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#FF0000", fillOpacity: 0.35 });
+        isClosed = true;
+      });
+    }
+    google.maps.event.addListener(marker, 'drag', function (dragEvent) {
+      poly.getPath().setAt(markerIndex, dragEvent.latLng);
+    });
+    poly.getPath().push(clickEvent.latLng);
+  });
+
+  $('.reset-poly').click(function(){
+    debugger;
+    poly.setMap(null);
+    poly = new google.maps.Polyline({ map: map, path: [], strokeColor: "#FF0000", strokeOpacity: 1.0, strokeWeight: 2 });
+    isClosed = false;
+    polygonMarkers.forEach(function(mark, index) {
+      mark.setMap(null);
+    });
+  });
+
+  $('.checking-poly').click(function(event) {
+    if(!(isClosed && enablePolygon)) {
+      return;
+    }
+
+    $.ajax({
+      url: '/lines',
+      method: 'GET',
+      dataType: 'JSON'
+    }).done(function(result){
+      debugger;
+      //each do all line
+      //check intersect
+      //check inside
+    });
+
+  });
 }
 
 function createLine(arr, pipelineName, color, id, lineName){
@@ -106,3 +162,15 @@ function resetmark() {
     mark.setMap(null);
   });
 }
+
+function intersects(a,b,c,d,p,q,r,s) {
+  var det, gamma, lambda;
+  det = (c - a) * (s - q) - (r - p) * (d - b);
+  if (det === 0) {
+    return false;
+  } else {
+    lambda = ((s - q) * (r - a) + (p - r) * (s - b)) / det;
+    gamma = ((b - d) * (r - a) + (c - a) * (s - b)) / det;
+    return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
+  }
+};

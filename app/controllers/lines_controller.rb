@@ -4,6 +4,15 @@ class LinesController < ApplicationController
 	def index
 		@lines = Line.all
     @new_line = Line.new
+    data = []
+    @lines.each do |line|
+      marks = line.marks.pluck(:lat, :lng)
+      data << {id: line.id, name: line.name, marks: marks}
+    end
+    respond_to do |format|
+      format.html
+      format.json {render json: {data: data, message: "success"}}
+    end
 	end
 
   def show

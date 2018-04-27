@@ -8,3 +8,4 @@
 //= require datatable
 //= require line
 //= require mark
+//= require polygon

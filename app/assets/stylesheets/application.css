@@ -4,6 +4,7 @@
   *= require layout
   *= require lines
   *= require posts
+  *= require switch_box
  */
 @import "gentelella-custom";
 @import "gentelella";
