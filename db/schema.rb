@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180408101132) do
     t.string "color"
     t.integer "struction_id"
     t.string "struction_type"
+    t.string "radius"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

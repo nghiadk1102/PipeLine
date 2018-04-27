@@ -24,7 +24,7 @@ class LineMeeting
 
             z2 = height_intersect_mark({x: value2[0].to_f, y: value2[1].to_f, z: value2[2].to_f}, {x: list_marks_line2[index2 + 1][0].to_f, y: list_marks_line2[index2 + 1][1].to_f, z: list_marks_line2[index2 + 1][2].to_f}, {x: result[:x].to_f, y: result[:y].to_f})
             if (z1 - z2) < (line1.size_safe + line2.size_safe)
-              list_intersect << {lat: result[:x], lng: result[:y]}
+              list_intersect << {lat: result[:x], lng: result[:y], height: (z1+z2)/2}
             end
           end
         end

@@ -6,6 +6,7 @@ class CreateLines < ActiveRecord::Migration[5.1]
       t.string :color
       t.integer :struction_id
       t.string :struction_type
+      t.string :radius
       t.timestamps
     end
   end

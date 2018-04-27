@@ -19,7 +19,7 @@ $(document).ready(function() {
           $.each(value, function(key, value){ //each lines
             $.each(value, function(key, value){ //each marks
               var lineName = key;
-              var line = createLine(value['marks'], pipelineName, value['color'], value['id'], lineName);
+              var line = createLine(value['marks'], pipelineName, value['color'], value['id'], lineName, value['radius']);
               line.setMap(map);
               list_line.push(line);
             });

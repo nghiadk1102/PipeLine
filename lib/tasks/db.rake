@@ -160,7 +160,7 @@ namespace :db do
           values = LineMeeting.checking line1, line
           if values
             values.each do |value|
-              line1.intersect_marks.create! lat: value[:lat], lng: value[:lng], second_line_id: line.id
+              line1.intersect_marks.create! lat: value[:lat], lng: value[:lng], second_line_id: line.id, height: value[:height]
             end
           end
         end
@@ -168,7 +168,7 @@ namespace :db do
 
       paths.each_with_index do |path, index|
         line = Line.create! name: "path#{index}", struction_id: rand(1..4),
-          color: "#%06x" % (rand * 0xffffff), struction_type: PipeLine.name
+          color: "#%06x" % (rand * 0xffffff), struction_type: PipeLine.name, radius: 5
         path.each do |position|
           line.marks.create! lat: position[0], lng: position[1], height: position[2]
         end
