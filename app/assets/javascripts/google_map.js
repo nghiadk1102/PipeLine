@@ -10,6 +10,7 @@ function initMap() {
   var isClosed = false;
   var enablePolygon = true;
   var polygonMarkers = [];
+  var lineInside = [];
   var poly = new google.maps.Polyline({ map: map, path: [], strokeColor: "#FF0000", strokeOpacity: 1.0, strokeWeight: 2 });
   google.maps.event.addListener(map, 'click', function (clickEvent) {
     var enablePolygon = $('#enable-polygon')[0].checked;
@@ -37,13 +38,13 @@ function initMap() {
   });
 
   $('.reset-poly').click(function(){
-    debugger;
     poly.setMap(null);
     poly = new google.maps.Polyline({ map: map, path: [], strokeColor: "#FF0000", strokeOpacity: 1.0, strokeWeight: 2 });
     isClosed = false;
     polygonMarkers.forEach(function(mark, index) {
       mark.setMap(null);
     });
+    polygonMarkers = [];
   });
 
   $('.checking-poly').click(function(event) {
@@ -56,13 +57,51 @@ function initMap() {
       method: 'GET',
       dataType: 'JSON'
     }).done(function(result){
-      debugger;
-      //each do all line
-      //check intersect
-      //check inside
+      lineInside = [];
+      result.data.forEach(function(line, index){
+        for(var i = 0; i < line.marks.length; i++){
+          var googleMark = new google.maps.LatLng(line.marks[i][0], line.marks[i][1]);
+          if (google.maps.geometry.poly.containsLocation(googleMark, poly)) {
+            if(!isInclude(lineInside, line.id)){
+                lineInside.push(line);
+              }
+            break;
+          }
+        };
+      });
+      polygonMarkers.forEach(function(mark, index){
+        var firstMark = mark.position;
+        var secondMark = index == (polygonMarkers.length - 1) ? polygonMarkers[0].position : polygonMarkers[index + 1].position;
+        result.data.forEach(function(line, index){
+          for(var i = 0; i < line.marks.length - 1; i++){
+            var firsrLineMark = line.marks[i];
+            var secondLineMark = line.marks[i+1];
+            if(intersects(firstMark.lat(), firstMark.lng(), secondMark.lat(), secondMark.lng(), firsrLineMark[0], firsrLineMark[1], secondLineMark[0], secondLineMark[1])) {
+              if(!isInclude(lineInside, line.id)){
+                lineInside.push(line);
+              }
+              break;
+            }
+          }
+        });
+      });
+      var content = '<ul class="list-group">';
+      _.map(lineInside, function(line){
+        content += '<li class="list-group-item"><p><strong>Line ID:</strong>' + line.id + '</p>'
+                + '<p><p><strong>Line Name:</strong>' + line.name + '</p>'
+                + '</li>';
+      });
+      content += '</ul>';
+      $('body').find('.list-line-area').html(content);
+      $('body').find('.count-line').html('<span>Count Line:' + lineInside.length + '</span>');
     });
-
   });
+}
+
+function isInclude(arr, id) {
+  return _.includes(_.map(arr, function(attr){
+          return attr.id;
+        }), id)
 }
 
 function createLine(arr, pipelineName, color, id, lineName){
@@ -163,14 +202,23 @@ function resetmark() {
   });
 }
 
-function intersects(a,b,c,d,p,q,r,s) {
-  var det, gamma, lambda;
-  det = (c - a) * (s - q) - (r - p) * (d - b);
-  if (det === 0) {
-    return false;
-  } else {
-    lambda = ((s - q) * (r - a) + (p - r) * (s - b)) / det;
-    gamma = ((b - d) * (r - a) + (c - a) * (s - b)) / det;
-    return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
+
+function intersects(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
+
+  var s1_x, s1_y, s2_x, s2_y;
+  s1_x = p1_x - p0_x;
+  s1_y = p1_y - p0_y;
+  s2_x = p3_x - p2_x;
+  s2_y = p3_y - p2_y;
+
+  var s, t;
+  s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+  t = ( s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
+
+  if (s >= 0 && s <= 1 && t >= 0 && t <= 1){
+    // Collision detected
+    return true;
   }
-};
+
+  return false; // No collision
+}

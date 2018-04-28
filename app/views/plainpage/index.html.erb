@@ -24,12 +24,25 @@
         </p>
         <span>Enable Draw polygon</span>
         <button class="reset-poly">Reset Polygon</button>
-        <button class="checking-poly">Checking Line inside Polygon</button>
+        <button class="checking-poly" data-toggle="modal" data-target="#checking-poly">Checking Line inside Polygon</button>
       </div>
     </div>
   </div>
 </div>
 <%= render "map" %>
+<div class="modal fade" role="dialog" id="checking-poly">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">List Line in area</h4>
+        <h5>Show all Line in checked area</h5>
+        <div class="count-line">  </div>
+      </div>
+      <div class="list-line-area"></div>
+    </div>
+  </div>
+</div>
 <% else %>
   <%= render "devise/sessions/login" %>
 <% end %>
