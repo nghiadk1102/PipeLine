@@ -202,9 +202,7 @@ function resetmark() {
   });
 }
 
-
 function intersects(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
-
   var s1_x, s1_y, s2_x, s2_y;
   s1_x = p1_x - p0_x;
   s1_y = p1_y - p0_y;

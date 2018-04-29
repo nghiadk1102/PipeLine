@@ -1,30 +1,40 @@
 <% if user_signed_in? %>
 <div class="right_col" role="main">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-9">
       <div id="map"></div>
     </div>
-    <div class="col-md-2">
-      <span><h5>Filter Line:</h5></span>
-      <%= form_tag "/filterline", class: "filterline" do  %>
-        <% @pipelines.each do |pipeline| %>
-          <p>
-            <%= check_box_tag pipeline.name %>
-            <%= label pipeline.name, pipeline.name %>
-          </p>
-        <% end %>
-        <%= button_tag "Show", type: "button", class: "btn-submit btn btn-primary" %>
-      <% end %>
-      <div>
-        <p>
+    <div class="col-md-3">
+      <div class="filter">
+        <span>
+          <h5>Filter Line:</h5>
+        </span>
+        <i class="fa fa-arrows hide-filter"></i>
+
+        <div class="filter-content">
+          <%= form_tag "/filterline", class: "filterline" do  %>
+            <% @pipelines.each do |pipeline| %>
+              <p>
+                <%= check_box_tag pipeline.name %>
+                <%= label pipeline.name, pipeline.name %>
+              </p>
+            <% end %>
+            <%= button_tag "Show", type: "button", class: "btn-submit btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="polygon">
+        <span><strong>Draw the area for checking inside line</strong></span>
+        <div class="enable-polygon">
           <label class="switch">
-            <input type="checkbox" checked id="enable-polygon">
+            <input type="checkbox" id="enable-polygon">
             <span class="slider round"></span>
           </label>
-        </p>
-        <span>Enable Draw polygon</span>
-        <button class="reset-poly">Reset Polygon</button>
-        <button class="checking-poly" data-toggle="modal" data-target="#checking-poly">Checking Line inside Polygon</button>
+          <span class="content-text-polygon">Enable Draw polygon</span>
+        </div>
+        <button class="reset-poly btn btn-info">Reset Polygon</button>
+        <button class="checking-poly btn btn-primary" data-toggle="modal" data-target="#checking-poly">Checking Line inside Polygon</button>
       </div>
     </div>
   </div>
