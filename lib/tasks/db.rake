@@ -167,7 +167,7 @@ namespace :db do
       end
 
       paths.each_with_index do |path, index|
-        line = Line.create! name: "path#{index}", struction_id: rand(1..4),
+        line = Line.create! name: FFaker::Address.street_name, struction_id: rand(1..4), description: FFaker::Book.description,
           color: "#%06x" % (rand * 0xffffff), struction_type: PipeLine.name, radius: 5
         path.each do |position|
           line.marks.create! lat: position[0], lng: position[1], height: position[2]

@@ -42,6 +42,15 @@ class LinesController < ApplicationController
     redirect_to lines_url
   end
 
+  def update
+    if @line.update_attributes lineparams
+      flash[:success] = "Update Line successfully"
+    else
+      flash[:error] = "Update Line error"
+    end
+    redirect_to lines_path
+  end
+
   def destroy
   	if @line&.destroy
     	flash[:success] = "Delete Line successfully"
