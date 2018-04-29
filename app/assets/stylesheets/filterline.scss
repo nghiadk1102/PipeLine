@@ -1,3 +1,32 @@
-// Place all the styles related to the filterline controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.enable-polygon {
+  margin-top: 20px;
+  position: relative;
+}
+
+.content-text-polygon{
+  left: 50px;
+  position: absolute;
+  top: 4px;
+}
+
+.polygon {
+  border-style: ridge;
+  border-radius: 10px;
+  padding: 10px;
+  .btn {
+    width: 210px;
+  }
+}
+
+.filter {
+  border-style: ridge;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.hide-filter{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}

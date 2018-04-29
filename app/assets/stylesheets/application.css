@@ -4,6 +4,8 @@
   *= require layout
   *= require lines
   *= require posts
+  *= require switch_box
+  *= require filterline
  */
 @import "gentelella-custom";
 @import "gentelella";

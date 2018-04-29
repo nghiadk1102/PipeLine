@@ -36,4 +36,8 @@ $(document).ready(function() {
       });
     }
   }
+
+  $('.hide-filter').click(function(){
+    $(this).closest('.filter').find('.filter-content').toggle('slow');
+  })
 });
