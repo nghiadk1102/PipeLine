@@ -104,7 +104,7 @@ function isInclude(arr, id) {
         }), id)
 }
 
-function createLine(arr, pipelineName, color, id, lineName){
+function createLine(arr, pipelineName, color, id, lineName, radius){
   var newline = new google.maps.Polyline({
     path: arr,
     geodesic: true,
@@ -119,6 +119,7 @@ function createLine(arr, pipelineName, color, id, lineName){
     content: '<div>' +
              '<p><strong>Name: </strong>' + lineName + '</p>' +
              '<p><strong>type: </strong>' + pipelineName + '</p>' +
+             '<p><strong>Radius: </strong>' + radius + '</p>' +
              '</div>'
 
   });
@@ -183,7 +184,7 @@ function createMark(arr, map) {
 
   var contentString = '<div id="content">' +
                       '<p>' +
-                      '[' + arr[1] + ',' + arr[2] + ']' +
+                      '[' + arr[1] + ',' + arr[2] + ',' + arr[3] + ']' +
                       '</p>' +
                       '</div>'
   var infowindow = new google.maps.InfoWindow({

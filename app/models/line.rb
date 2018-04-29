@@ -37,7 +37,7 @@ class Line < ApplicationRecord
       values = LineMeeting.checking self, line
       if values
         values.each do |value|
-  				self.intersect_marks.create! lat: value[:lat], lng: value[:lng], second_line_id: line.id
+  				self.intersect_marks.create! lat: value[:lat], lng: value[:lng], second_line_id: line.id, height: value[:height]
   			end
   		end
   	end
