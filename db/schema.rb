@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20180408101132) do
 
   create_table "lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "color"
     t.integer "struction_id"
     t.string "struction_type"

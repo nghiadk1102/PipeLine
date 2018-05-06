@@ -13,7 +13,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Edit Pipeline</h4>
       </div>
       <div class="modal-body">
 
@@ -28,7 +28,7 @@
           </p>
           <p>
             <%= f.label :description %>
-            <%= f.text_field :description, class: "form-control" %>
+            <%= f.text_area :description, rows: 6, class: "form-control" %>
           </p>
           <%= f.submit "Update", class: "btn btn-primary" %>
         <% end %>
