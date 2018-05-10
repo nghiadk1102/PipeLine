@@ -45,6 +45,8 @@ function initMap() {
       mark.setMap(null);
     });
     polygonMarkers = [];
+    $('body').find('.list-line-area').html();
+    $('body').find('.count-line').html();
   });
 
   $('.checking-poly').click(function(event) {

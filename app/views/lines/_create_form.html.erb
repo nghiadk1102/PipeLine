@@ -17,11 +17,16 @@
           </p>
 
           <p>
+            <%= f.label :radius %>
+            <%= f.number_field :radius, class: "form-control" %>
+          </p>
+
+          <p>
             <%=f.label :Pipe_type %>
             <%= f.select :struction_id, pipeline_for_select.collect{|pipeline| [pipeline.name, pipeline.id]},{}, class: "form-control" %>
             <%= f.hidden_field :struction_type, value: :PipeLine %>
           </p>
-          <%= link_to_add_fields "Add a Mark", f, :marks, "btn btn-primary", "Add a new Contact" %>
+          <%= link_to_add_fields "Add a Mark", f, :marks, "btn btn-primary", "Add a new Mark" %>
           <div class="mark_fields">
             <div class="row">
               <div class="col-md-6 colum_one"></div>
